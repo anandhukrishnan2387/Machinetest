@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { ToastrModule } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -14,36 +15,71 @@ import { ToastrModule } from 'ngx-toastr';
 })
 export class LoginComponent implements OnInit {
 
-  loginForm: FormGroup;
+  loginForm:FormGroup;
   isSubmitted = false;
-  login: Loginuser = new Loginuser();
-  constructor(private service: AuthService,
+  login:Loginuser=new Loginuser();
+  logins: Observable <Loginuser[]>;
+
+  constructor(private authService: AuthService,
     private router: Router,
-    private http: HttpClient,
-    //private toaster: ToastrService,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,private toastr:ToastrService) { }
 
   ngOnInit() {
-    this.loginForm = this.formBuilder.group(
-      {
-        username: ['', [Validators.required]],
-        password: ['', [Validators.required]]
-      }
-    );
+    this.logins=this.authService.getLoginDet();
+    this.loginForm=this.formBuilder.group({
+      username: ['',Validators.compose([Validators.required])],
+      password:['',[Validators.required]]
+    });
   }
-  get formControls() {
+
+  get formControls()
+  {
     return this.loginForm.controls;
   }
-  logins() {
-    console.log(this.loginForm.value);
-    this.isSubmitted = true;
-    if (this.loginForm.invalid) {
-      this.router.navigateByUrl('/login');
-    }
-    else {
-      this.router.navigateByUrl('/list');
-    }
 
+  loginUser()
+  {
+    this.login.username=this.loginForm.controls.username.value;
+    this.login.password=this.loginForm.controls.password.value;
+    console.log(this.loginForm.value);
+    this.isSubmitted=true;
+    this.login.usertype="";
+    if(this.loginForm.invalid)
+    {
+      this.toastr.error('Enter username and password');
+      return;
+    }
+   
+   this.authService.login(this.login).subscribe(element => {
+      
+    if(element!=null)
+    {
+      this.login.usertype=element["usertype"];  
+      console.log(this.login.usertype);   
+      if(this.login.usertype=='Admin')
+      {
+        localStorage.setItem('ACCESS_TOKEN',this.login.username);
+        this.router.navigateByUrl('list');
+        this.toastr.success('Login Successful');
+      }
+      else
+      {
+        
+        localStorage.setItem('ACCESS_TOKEN',this.login.username);
+        this.router.navigateByUrl('purchaselist');
+        this.toastr.success('Login Successful');
+      }
+    }
+        else{
+          this.toastr.error('Invalid Username or Password');
+        }
+      
+      
+      
+    }
+    
+   ); 
+ 
   }
 
 }

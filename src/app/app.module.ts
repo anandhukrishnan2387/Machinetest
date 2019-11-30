@@ -11,6 +11,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { VendorListComponent } from './vendor-list/vendor-list.component';
+import { VendorAddComponent } from './vendor-add/vendor-add.component';
+import { VendorEditComponent } from './vendor-edit/vendor-edit.component';
+import { PurchaseComponent } from './purchase/purchase.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { PurchaseAddComponent } from './purchase-add/purchase-add.component';
+import { AssetmasterListComponent } from './assetmaster-list/assetmaster-list.component';
+import { AssetmasterAddComponent } from './assetmaster-add/assetmaster-add.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +26,14 @@ import { ToastrModule } from 'ngx-toastr';
     AssetListComponent,
     AssetEditComponent,
     AssetAddComponent,
-    LoginComponent
+    LoginComponent,
+    VendorListComponent,
+    VendorAddComponent,
+    VendorEditComponent,
+    PurchaseComponent,
+    PurchaseAddComponent,
+    AssetmasterListComponent,
+    AssetmasterAddComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +42,8 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

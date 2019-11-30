@@ -10,14 +10,18 @@ import { Loginuser } from './shared/loginuser';
 export class AuthService {
 
   constructor( private http: HttpClient) { }
+
   public login(userInfo:Loginuser): Observable<any> {
     localStorage.setItem('ACCESS_TOKEN',"access_token");
-    return this.http.get(environment.baseUrl+'/logintbls');
+    return this.http.get(environment.baseUrl+'/Logins?username='+userInfo.username+'&password='+userInfo.password);
   }
   public isLoggedIn() {
     return localStorage.getItem('ACCESS_TOKEN') !== null
   }
   public isLogggedOut() {
     return localStorage.removeItem('ACCESS_TOKEN');
+  }
+  getLoginDet(): Observable<any> {
+    return this.http.get(environment.baseUrl+'/Logins');
   }
 }

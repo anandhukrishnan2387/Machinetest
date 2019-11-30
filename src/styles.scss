@@ -1,1 +1,70 @@
-/* You can add global styles to this file, and also import other style files */
+.navcustomdiv
+{
+    margin-top: 10px;
+
+}
+
+.tblctnr 
+{
+    border-style : solid;
+    border-width: 2px;
+    border-radius: 8px;
+    border-color: black;
+    margin-top: 10px;
+}
+
+.btn1 {
+    border: 2px solid black;
+    background-color:#4CAF50 ;
+    color: black;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    font-size:small;
+  }
+  
+  /* Green */
+  .success {
+    border-color:white;
+    
+  }
+  
+  .success:hover {
+    background-color: rgb(82, 129, 84);
+    color: white;
+  }
+
+
+  .navbar-custom {
+    background-color: #565e59f1;
+}
+
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: rgba(255,255,255,.8);
+}
+
+/* change the link color */
+.navbar-custom .navbar-nav .nav-link {
+    color: rgba(255,255,255,.5);
+}
+
+/* change the color of active or hovered links */
+.navbar-custom .nav-item.active .nav-link,
+.navbar-custom .nav-item:hover .nav-link {
+    color: #ffffff;
+}
+
+/* for dropdown only - change the color of droodown */
+.navbar-custom .dropdown-menu {
+    background-color: #ff5500;
+}
+.navbar-custom .dropdown-item {
+    color: #ffffff;
+}
+.navbar-custom .dropdown-item:hover,
+.navbar-custom .dropdown-item:focus {
+    color: #333333;
+    background-color: rgba(255,255,255,.5);
+}

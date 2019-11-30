@@ -23,31 +23,35 @@
             </div>
         </nav>
         </div>
-        <div class="tblctnr">
-    <div class="panel-body">
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Asset ID</th>
-                    <th>Name</th>
-                    <th>Asset Type</th>
-                    <th>Class</th>
-                    <th><button [routerLink]="['/add']" class="btn1 success" routerLinkActive="active">Add New</button></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let ad of assetdef | async | paginate:{itemsPerPage:4,currentPage:p};let i=index">
-                    <td>{{ad.ad_id}}</td>
-                    <td>{{ad.ad_name}}</td>
-                    <td>{{ad.at_name }}</td>
-                    <td>{{ad.ad_class }}</td>
-                    <td><button [routerLink]="['/edit',ad.ad_id]" class="btn btn-primary" routerLinkActive="active">Edit</button></td>
-                    <td><button (click) ="deleteAsset(ad.ad_id)" class="btn btn-danger"> Delete</button></td>
-                </tr>
-            </tbody>
-        </table>
-        
-    </div>
-    <!-- <pagination-controls (pageChange)="p=$event"> -->
-</div>
 
+<div class="panel-body">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Order Number</th>
+              <th>AssetName</th>
+              <th>Asset Type</th>
+              <th>Vendor</th>
+              <th>Quantity</th>
+              <th>Purchase Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+    
+          <tbody>
+            <tr *ngFor="let purchase of purchases | async | paginate: {itemsPerPage:4,currentPage:p}; let i=index ">
+              <td>{{purchase.pd_order_no}}</td>
+              <td>{{purchase.pd_ad_name}}</td>
+              <td>{{purchase.pd_type_name}}</td>
+              <td>{{purchase.pd_vendor_name}}</td>
+              <td>{{purchase.pd_qty}}</td>
+              <td>{{purchase.pd_ddate}}</td>
+              <td><button [routerLink]="['/assetmaster',purchase.pd_order_no]"  class="btn btn-info" style="margin-left: 10px"
+                 routerLinkActive="active">Add Asset</button>
+                
+              </td>
+            </tr>
+          </tbody>
+          </table>
+          </div>
+          </div>
