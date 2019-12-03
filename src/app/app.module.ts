@@ -19,6 +19,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { PurchaseAddComponent } from './purchase-add/purchase-add.component';
 import { AssetmasterListComponent } from './assetmaster-list/assetmaster-list.component';
 import { AssetmasterAddComponent } from './assetmaster-add/assetmaster-add.component';
+import { AssetMasterListComponent } from './asset-master-list/asset-master-list.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AssetmasterAddComponent } from './assetmaster-add/assetmaster-add.compo
     PurchaseComponent,
     PurchaseAddComponent,
     AssetmasterListComponent,
-    AssetmasterAddComponent
+    AssetmasterAddComponent,
+    AssetMasterListComponent
   ],
   imports: [
     BrowserModule,
